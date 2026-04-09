@@ -1,7 +1,7 @@
 import { TONALITY_MAP } from '../data/tonalityMap.js';
 
 /**
- * Yo resuelvo la alteración final que debe aplicarse a una nota.
+ * resuelvo la alteración final que debe aplicarse a una nota.
  * @param {{
  *   activeAccidental: string | null,
  *   selectedTonality: string,
@@ -10,39 +10,39 @@ import { TONALITY_MAP } from '../data/tonalityMap.js';
  * @returns {string | null}
  */
 export function resolveAccidentalType({
-  activeAccidental,
-  selectedTonality,
-  noteId
+	activeAccidental,
+	selectedTonality,
+	noteId
 }) {
-  if (activeAccidental === 'sharp') {
-    return 'sharp';
-  }
+	if (activeAccidental === 'sharp') {
+		return 'sharp';
+	}
 
-  if (activeAccidental === 'flat') {
-    return 'flat';
-  }
+	if (activeAccidental === 'flat') {
+		return 'flat';
+	}
 
-  if (activeAccidental === 'natural') {
-    return null;
-  }
+	if (activeAccidental === 'natural') {
+		return null;
+	}
 
-  const tonalityConfig = TONALITY_MAP[selectedTonality];
+	const tonalityConfig = TONALITY_MAP[selectedTonality];
 
-  if (!tonalityConfig) {
-    return null;
-  }
+	if (!tonalityConfig) {
+		return null;
+	}
 
-  const isAlteredByTonality = tonalityConfig.alteredNotes.includes(noteId);
+	const isAlteredByTonality = tonalityConfig.alteredNotes.includes(noteId);
 
-  if (!isAlteredByTonality) {
-    return null;
-  }
+	if (!isAlteredByTonality) {
+		return null;
+	}
 
-  return tonalityConfig.accidentalType;
+	return tonalityConfig.accidentalType;
 }
 
 /**
- * Yo construyo la nota latina final con base en una alteración resuelta.
+ * construyo la nota latina final con base en una alteración resuelta.
  * @param {{
  *   latinNote: string,
  *   accidentalType: string | null
@@ -50,19 +50,19 @@ export function resolveAccidentalType({
  * @returns {string}
  */
 export function buildDisplayedNote({ latinNote, accidentalType }) {
-  if (accidentalType === 'sharp') {
-    return `${latinNote}#`;
-  }
+	if (accidentalType === 'sharp') {
+		return `${latinNote}#`;
+	}
 
-  if (accidentalType === 'flat') {
-    return `${latinNote}b`;
-  }
+	if (accidentalType === 'flat') {
+		return `${latinNote}b`;
+	}
 
-  return latinNote;
+	return latinNote;
 }
 
 /**
- * Yo resuelvo la nota final a insertar en la entrada.
+ * resuelvo la nota final a insertar en la entrada.
  * @param {{
  *   noteId: string,
  *   latinNote: string,
@@ -72,19 +72,19 @@ export function buildDisplayedNote({ latinNote, accidentalType }) {
  * @returns {string}
  */
 export function resolveDisplayedNote({
-  noteId,
-  latinNote,
-  activeAccidental,
-  selectedTonality
+	noteId,
+	latinNote,
+	activeAccidental,
+	selectedTonality
 }) {
-  const accidentalType = resolveAccidentalType({
-    activeAccidental,
-    selectedTonality,
-    noteId
-  });
+	const accidentalType = resolveAccidentalType({
+		activeAccidental,
+		selectedTonality,
+		noteId
+	});
 
-  return buildDisplayedNote({
-    latinNote,
-    accidentalType
-  });
+	return buildDisplayedNote({
+		latinNote,
+		accidentalType
+	});
 }

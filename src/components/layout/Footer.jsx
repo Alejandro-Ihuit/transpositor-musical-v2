@@ -7,7 +7,7 @@ function Footer() {
     const APP_NAME = "Transpositor Musical";
     const DEV = "Alejandro Ihuit Herrera";
     const DEV_CONTACT_MESSAGE = "Hola Alejandro, me interesa tu proyecto de transpositor musical. ¿Podemos hablar más al respecto?";
-    const VERSION = "2.0.0";
+    const VERSION = "3.0.0";
 
     return (
         <footer className="mt-1">
